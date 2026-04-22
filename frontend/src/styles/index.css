@@ -1,0 +1,56 @@
+/* ============================================================
+   CAMPUSNEST — Global Entry CSS
+   Import order matters — variables first, then everything else.
+   ============================================================ */
+
+@import './variables.css';
+@import './typography.css';
+@import './animations.css';
+@import './utilities.css';
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:  0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* offset for sticky nav */
+}
+
+body {
+  background: var(--cream);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Remove default list styles globally */
+ul, ol { list-style: none; }
+
+/* Remove default button styles globally —
+   components define their own button styles  */
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Remove default input/select outline —
+   components define their own focus styles  */
+input, select, textarea {
+  font-family: var(--font-body);
+  outline: none;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* React root */
+#root {
+  isolation: isolate;
+}

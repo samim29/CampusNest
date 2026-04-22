@@ -1,0 +1,57 @@
+/* ============================================================
+   CAMPUSNEST — Typography
+   Base text sizing. Components add their own font-size rules.
+   ============================================================ */
+
+/* Google Fonts loaded in index.html <head> — not here,
+   to avoid render-blocking duplicate requests.           */
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+p { line-height: 1.7; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+strong { font-weight: 600; }
+
+em { font-style: italic; }
+
+/* Eyebrow label — reused across all sections */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+/* Section headline size scale */
+.display-xl { font-size: clamp(3.5rem, 6vw, 6rem);  }
+.display-lg { font-size: clamp(2.5rem, 4vw, 4rem);  }
+.display-md { font-size: clamp(2rem,   3vw, 3.2rem); }
+.display-sm { font-size: clamp(1.5rem, 2vw, 2rem);  }

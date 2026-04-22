@@ -1,0 +1,208 @@
+/* ============================================================
+   CAMPUSNEST — Footer Styles
+   ============================================================ */
+
+.footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-body);
+}
+
+.footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px var(--page-px) 40px;
+}
+
+/* ── Top grid ── */
+.footer__top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+/* ── Brand column ── */
+.footer__brand {}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.footer__logo-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--terracotta);
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.footer__logo:hover .footer__logo-icon {
+  transform: rotate(-5deg) scale(1.08);
+}
+
+.footer__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+.footer__desc {
+  font-size: 0.87rem;
+  line-height: 1.7;
+  max-width: 260px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Social buttons ── */
+.footer__socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__social-btn {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.footer__social-btn:hover {
+  background: var(--terracotta);
+  color: white;
+  border-color: var(--terracotta);
+  transform: translateY(-2px);
+}
+
+/* ── Link columns ── */
+.footer__col {}
+
+.footer__col-title {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__link {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  display: inline-block;
+}
+
+.footer__link:hover {
+  color: white;
+  padding-left: 4px;
+}
+
+/* ── Divider ── */
+.footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 32px;
+}
+
+/* ── Bottom row ── */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer__copy {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+.footer__legal-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer__legal-link {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.2s ease;
+}
+
+.footer__legal-link:hover {
+  color: white;
+}
+
+.footer__legal-dot {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .footer__inner {
+    padding: 60px var(--page-px-md) 32px;
+  }
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+  .footer__desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__inner {
+    padding: 48px var(--page-px-sm) 28px;
+  }
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .footer__legal-links {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

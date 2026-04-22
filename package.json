@@ -1,0 +1,70 @@
+{
+  "name": "campusnest",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A comprehensive platform for student accommodations with advanced features",
+  "author": "Your Name",
+  "license": "MIT",
+  "scripts": {
+    "dev:backend_win": "set FLASK_APP=backend/api/app.py && set FLASK_RUN_PORT=3001 && backend\\.venv\\Scripts\\python.exe -m flask run --host=127.0.0.1",
+    "dev:backend_linux": "FLASK_APP=backend/api/app.py FLASK_RUN_PORT=3001 FLASK_RUN_HOST=0.0.0.0 backend/.venv/bin/python -m flask run",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "node detect-os.cjs",
+    "dev": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start": "npm run dev",
+    "build": "vite build --config ./frontend/vite.config.js",
+    "build:analyze": "vite build --mode analyze --config ./frontend/vite.config.js",
+    "lint": "eslint ./frontend --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint ./frontend --ext js,jsx --fix",
+    "format": "prettier --write \"frontend/src/**/*.{js,jsx,json,css,md}\"",
+    "preview": "vite preview --config ./frontend/vite.config.js",
+    "clean": "rimraf dist node_modules/.vite",
+    "test": "echo \"Error: no tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.84.1",
+    "@tanstack/react-query-devtools": "^5.84.1",
+    "concurrently": "^9.2.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.536.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.7.1",
+    "react-window": "^1.8.11",
+    "react-window-infinite-loader": "^1.0.10"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.17",
+    "vite": "^7.0.4"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
