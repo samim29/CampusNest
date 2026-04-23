@@ -1,0 +1,147 @@
+/* ============================================================
+   CAMPUSNEST — Button Styles
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background  0.25s ease,
+    color       0.25s ease,
+    border-color 0.25s ease,
+    transform   0.25s ease,
+    box-shadow  0.25s ease,
+    opacity     0.25s ease;
+  user-select: none;
+}
+
+/* ── Sizes ── */
+.btn--sm {
+  font-size: 0.82rem;
+  padding: 8px 18px;
+}
+
+.btn--md {
+  font-size: 0.95rem;
+  padding: 13px 28px;
+}
+
+.btn--lg {
+  font-size: 1.05rem;
+  padding: 16px 36px;
+}
+
+/* ── Variants ── */
+
+/* Primary — terracotta filled */
+.btn--primary {
+  background: var(--terracotta);
+  color: white;
+  box-shadow: var(--shadow-terra);
+}
+.btn--primary:hover:not(.btn--disabled):not(.btn--loading) {
+  background: var(--terracotta-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-terra-lg);
+}
+.btn--primary:active:not(.btn--disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-terra);
+}
+
+/* Secondary — outlined navy */
+.btn--secondary {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--border-medium);
+}
+.btn--secondary:hover:not(.btn--disabled):not(.btn--loading) {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.btn--secondary:active:not(.btn--disabled) {
+  transform: translateY(0);
+}
+
+/* Ghost — minimal, navy text */
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+  border: none;
+  opacity: 0.7;
+}
+.btn--ghost:hover:not(.btn--disabled):not(.btn--loading) {
+  opacity: 1;
+  background: rgba(15, 27, 45, 0.06);
+}
+
+/* White — white filled, terracotta text (for dark sections) */
+.btn--white {
+  background: white;
+  color: var(--terracotta);
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+.btn--white:hover:not(.btn--disabled):not(.btn--loading) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+}
+.btn--white:active:not(.btn--disabled) {
+  transform: translateY(0) scale(1);
+}
+
+/* Ghost-white — outlined white (for dark sections) */
+.btn--ghost-white {
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+.btn--ghost-white:hover:not(.btn--disabled):not(.btn--loading) {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── States ── */
+.btn--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.btn__label--loading {
+  opacity: 0;
+}
+
+/* ── Spinner ── */
+.btn__spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

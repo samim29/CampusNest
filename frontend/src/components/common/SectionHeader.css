@@ -1,0 +1,65 @@
+/* ============================================================
+   CAMPUSNEST — SectionHeader Styles
+   ============================================================ */
+
+.section-header {}
+
+.section-header--center {
+  text-align: center;
+}
+.section-header--center .section-header__subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Eyebrow ── */
+.section-header__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 12px;
+}
+
+/* ── Title ── */
+.section-header__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.section-header__title em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+
+/* ── Subtitle ── */
+.section-header__subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 520px;
+}
+
+/* ── Light variant (dark backgrounds) ── */
+.section-header--light .section-header__eyebrow {
+  color: var(--terracotta-light);
+}
+
+.section-header--light .section-header__title {
+  color: white;
+}
+
+.section-header--light .section-header__title em {
+  color: var(--terracotta-light);
+}
+
+.section-header--light .section-header__subtitle {
+  color: rgba(255, 255, 255, 0.5);
+}

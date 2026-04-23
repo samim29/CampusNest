@@ -1,0 +1,113 @@
+/* ============================================================
+   CAMPUSNEST — CTASection Styles
+   ============================================================ */
+
+.cta-section {
+  padding: 80px var(--page-px);
+}
+
+.cta-section__inner {
+  background: var(--terracotta);
+  border-radius: var(--radius-2xl);
+  padding: 80px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Watermark */
+.cta-section__watermark {
+  position: absolute;
+  right: 280px;
+  top: -30px;
+  font-size: 200px;
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* Title */
+.cta-section__title {
+  font-family: var(--font-display);
+  color: white;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.cta-section__title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+/* Sub */
+.cta-section__sub {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 460px;
+}
+
+/* Buttons */
+.cta-section__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .cta-section {
+    padding: 60px var(--page-px-md);
+  }
+
+  .cta-section__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 56px 40px;
+    gap: 36px;
+  }
+
+  .cta-section__watermark {
+    display: none;
+  }
+
+  .cta-section__sub {
+    max-width: 100%;
+  }
+
+  .cta-section__buttons {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .cta-section {
+    padding: 40px var(--page-px-sm);
+  }
+
+  .cta-section__inner {
+    padding: 44px 28px;
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-section__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-section__buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

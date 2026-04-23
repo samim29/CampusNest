@@ -1,0 +1,30 @@
+/* ============================================================
+   CAMPUSNEST — Home Page Styles
+   Only layout rules that span the full page live here.
+   Each section has its own CSS file.
+   ============================================================ */
+
+.home {
+  min-height: 100vh;
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+/* Skip-to-content link for keyboard users */
+.home__skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--navy);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: var(--z-loader);
+  transition: top 0.2s ease;
+}
+
+.home__skip-link:focus {
+  top: 0;
+}

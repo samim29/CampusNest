@@ -1,0 +1,47 @@
+/* ============================================================
+   CAMPUSNEST — Badge Styles
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.badge--verified {
+  background: var(--sage);
+  color: white;
+}
+
+.badge--premium {
+  background: var(--gold);
+  color: white;
+}
+
+.badge--sage {
+  background: rgba(122, 158, 126, 0.15);
+  color: #3D7A43;
+}
+
+.badge--gold {
+  background: rgba(212, 168, 83, 0.18);
+  color: var(--gold-dark);
+}
+
+.badge--navy {
+  background: var(--navy);
+  color: white;
+}
+
+.badge--terra {
+  background: rgba(200, 88, 58, 0.12);
+  color: var(--terracotta-dark);
+}

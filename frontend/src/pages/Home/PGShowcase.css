@@ -1,0 +1,56 @@
+/* ============================================================
+   CAMPUSNEST — PGShowcase Styles
+   ============================================================ */
+
+.pg-showcase {
+  padding: 100px var(--page-px);
+  position: relative;
+}
+
+/* ── Header row ── */
+.pg-showcase__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  gap: 24px;
+}
+
+.pg-showcase__view-all {
+  flex-shrink: 0;
+}
+
+/* ── Grid ── */
+.pg-showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .pg-showcase {
+    padding: 72px var(--page-px-md);
+  }
+
+  .pg-showcase__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .pg-showcase__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .pg-showcase {
+    padding: 60px var(--page-px-sm);
+  }
+
+  .pg-showcase__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

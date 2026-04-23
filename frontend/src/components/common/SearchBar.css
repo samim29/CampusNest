@@ -1,0 +1,171 @@
+/* ============================================================
+   CAMPUSNEST — SearchBar Styles
+   ============================================================ */
+
+.searchbar {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 32px 40px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+/* ── Title ── */
+.searchbar__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.searchbar__title-accent {
+  color: var(--terracotta);
+}
+
+/* ── Form grid ── */
+.searchbar__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+/* ── Field wrapper ── */
+.searchbar__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* ── Label ── */
+.searchbar__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* ── Input ── */
+.searchbar__input,
+.searchbar__select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(15, 27, 45, 0.12);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--navy);
+  background: var(--warm-white);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.searchbar__input:focus,
+.searchbar__select:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(200, 88, 58, 0.1);
+}
+
+.searchbar__input--error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(200, 88, 58, 0.12);
+}
+
+.searchbar__input::placeholder {
+  color: var(--text-faint);
+}
+
+/* Dropdown arrow for select */
+.searchbar__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B7355' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* ── Error message ── */
+.searchbar__error {
+  font-size: 0.75rem;
+  color: var(--error);
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* ── Submit button ── */
+.searchbar__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--terracotta);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s ease, transform 0.2s ease;
+  height: 46px;
+  position: relative;
+}
+
+.searchbar__btn:hover:not(:disabled) {
+  background: var(--terracotta-dark);
+  transform: scale(1.02);
+}
+
+.searchbar__btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.searchbar__btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .searchbar {
+    padding: 24px 28px;
+  }
+
+  .searchbar__form {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .searchbar__btn {
+    grid-column: 1 / -1;
+    justify-content: center;
+    width: 100%;
+    border-radius: var(--radius-full);
+    padding: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .searchbar {
+    padding: 20px;
+    border-radius: var(--radius-lg);
+  }
+
+  .searchbar__form {
+    grid-template-columns: 1fr;
+  }
+}

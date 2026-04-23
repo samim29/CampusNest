@@ -1,0 +1,65 @@
+/* ============================================================
+   CAMPUSNEST — Loader Styles
+   ============================================================ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loader__icon {
+  width: 56px;
+  height: 56px;
+  background: var(--terracotta);
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  animation: loadPulse 1s ease-in-out infinite;
+}
+
+.loader__brand {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+/* ── Bouncing dots ── */
+.loader__dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.loader__dot {
+  width: 7px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.loader__dot:nth-child(1) { animation-delay: 0s;    }
+.loader__dot:nth-child(2) { animation-delay: 0.15s; }
+.loader__dot:nth-child(3) { animation-delay: 0.30s; }
