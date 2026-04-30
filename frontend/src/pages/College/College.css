@@ -1,0 +1,605 @@
+/* ============================================================
+   CAMPUSNEST — College Detail Styles
+   ============================================================ */
+
+.college-page {
+  min-height: 100vh;
+  background: #F2EDE7;
+  font-family: var(--font-body);
+}
+
+/* ════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════ */
+.college-hero {
+  background: linear-gradient(130deg, var(--navy-mid) 0%, var(--navy) 100%);
+  padding: 120px var(--page-px) 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.college-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.college-hero__orb--a {
+  width: 380px;
+  height: 380px;
+  top: -80px;
+  right: -60px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 88, 58, 0.22) 0%,
+    transparent 70%
+  );
+  animation: driftA 12s ease-in-out infinite;
+}
+
+.college-hero__orb--b {
+  width: 250px;
+  height: 250px;
+  bottom: -50px;
+  left: 100px;
+  background: radial-gradient(
+    circle,
+    rgba(122, 158, 126, 0.15) 0%,
+    transparent 70%
+  );
+  animation: driftB 16s ease-in-out infinite;
+}
+
+.college-hero__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Back button */
+.college-hero__back {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.college-hero__back:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+}
+
+/* Hero card */
+.college-hero__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.college-hero__logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.college-hero__card:hover .college-hero__logo {
+  transform: scale(1.06) rotate(-3deg);
+}
+
+.college-hero__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.college-hero__type {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta-light);
+  margin-bottom: 6px;
+}
+
+.college-hero__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.college-hero__location {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.college-hero__est {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Stats */
+.college-hero__stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.college-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 20px;
+}
+
+.college-hero__stat:first-child {
+  padding-left: 0;
+}
+
+.college-hero__stat-num {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.college-hero__stat-label {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.college-hero__stat-div {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+/* Actions */
+.college-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: auto;
+  align-self: center;
+}
+
+/* ════════════════════════════════════════
+   BODY LAYOUT
+   ════════════════════════════════════════ */
+.college-body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  padding: 32px var(--page-px) 80px;
+  align-items: start;
+}
+
+/* ── Section ── */
+.college-section {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.college-section--card {
+  /* right column cards */
+}
+
+.college-section:last-child {
+  margin-bottom: 0;
+}
+
+.college-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.college-section__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.college-section__header .college-section__title {
+  margin-bottom: 0;
+}
+
+.college-section__link {
+  font-size: 0.82rem;
+  color: var(--terracotta);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.college-section__link:hover {
+  color: var(--terracotta-dark);
+  text-decoration: underline;
+}
+
+.college-section__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.college-section__empty {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 16px 0;
+}
+
+/* ── PG mini grid ── */
+.college-pg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.college-pg-mini {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+}
+
+.college-pg-mini:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.college-pg-mini:focus-visible {
+  outline: 2.5px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+.college-pg-mini__img {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.college-pg-mini__emoji {
+  font-size: 34px;
+  transition: transform 0.3s ease;
+}
+
+.college-pg-mini:hover .college-pg-mini__emoji {
+  transform: scale(1.1);
+}
+
+.college-pg-mini__badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--sage);
+  color: white;
+  letter-spacing: 0.04em;
+}
+
+.college-pg-mini__badge--premium {
+  background: var(--gold);
+}
+
+.college-pg-mini__body {
+  padding: 12px 14px;
+}
+
+.college-pg-mini__type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.college-pg-mini__name {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 3px;
+  line-height: 1.2;
+}
+
+.college-pg-mini__distance {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.college-pg-mini__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.college-pg-mini__price {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.college-pg-mini__price span {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.college-pg-mini__rating {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+/* ── Mess list ── */
+.college-mess-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.college-mess-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.college-mess-row:last-child {
+  border-bottom: none;
+}
+
+.college-mess-row__name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+
+.college-mess-row__meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.college-mess-row__hygiene {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.college-mess-row__hygiene-score {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.college-mess-row__hygiene-bar {
+  width: 80px;
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.college-mess-row__hygiene-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+
+/* ── Stat bars ── */
+.college-stat-bar {
+  margin-bottom: 14px;
+}
+
+.college-stat-bar:last-child {
+  margin-bottom: 0;
+}
+
+.college-stat-bar__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.college-stat-bar__label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.college-stat-bar__value {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.college-stat-bar__track {
+  height: 7px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.college-stat-bar__fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.9s ease;
+}
+
+/* ── Map placeholder ── */
+.college-map-placeholder {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px dashed var(--border-medium);
+}
+
+.college-map-placeholder__icon {
+  font-size: 28px;
+  display: block;
+}
+
+.college-map-placeholder__text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-align: center;
+}
+
+.college-map-placeholder__sub {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+/* ── Nearby colleges list ── */
+.college-nearby-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.college-nearby-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.college-nearby-item:last-child {
+  border-bottom: none;
+}
+
+.college-nearby-item__name {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.college-nearby-item__dist {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .college-hero {
+    padding: 100px var(--page-px-md) 40px;
+  }
+
+  .college-body {
+    grid-template-columns: 1fr;
+    padding: 24px var(--page-px-md) 60px;
+  }
+
+  .college-hero__actions {
+    flex-direction: row;
+    margin-left: 0;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .college-pg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .college-hero {
+    padding: 90px var(--page-px-sm) 36px;
+  }
+
+  .college-body {
+    padding: 16px var(--page-px-sm) 48px;
+  }
+
+  .college-hero__card {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .college-hero__stats {
+    gap: 0;
+  }
+
+  .college-hero__stat {
+    padding: 0 12px;
+  }
+
+  .college-pg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .college-section {
+    padding: 20px 18px;
+  }
+}
