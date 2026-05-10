@@ -37,3 +37,31 @@ frontend/.env.*
 # Databases
 *.db
 *.pdf
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment — NEVER commit
+.env
+.env.local
+.env.production
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# PWA cache (generated)
+sw.js
+workbox-*.js

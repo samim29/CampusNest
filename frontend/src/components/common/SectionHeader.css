@@ -63,3 +63,9 @@
 .section-header--light .section-header__subtitle {
   color: rgba(255, 255, 255, 0.5);
 }
+/* Add at the bottom of the existing SectionHeader.css */
+
+/* When used inside a dark panel — no bottom margin on subtitle */
+.section-header--no-mb {
+  margin-bottom: 0;
+}

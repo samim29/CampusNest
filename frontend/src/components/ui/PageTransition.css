@@ -1,0 +1,8 @@
+/* ============================================================
+   CAMPUSNEST — PageTransition Styles
+   ============================================================ */
+
+.page-transition {
+  animation: fadeIn 0.3s ease forwards;
+  will-change: opacity;
+}

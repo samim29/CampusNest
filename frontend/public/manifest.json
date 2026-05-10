@@ -1,0 +1,38 @@
+{
+  "name": "CampusNest",
+  "short_name": "CampusNest",
+  "description": "India's #1 student accommodation platform",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0F1B2D",
+  "theme_color": "#0F1B2D",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Find PG",
+      "url": "/pg-listings",
+      "description": "Search for PG accommodations"
+    },
+    {
+      "name": "Mess & Food",
+      "url": "/mess-food",
+      "description": "Check today's menu"
+    }
+  ]
+}

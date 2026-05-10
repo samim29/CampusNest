@@ -1,0 +1,344 @@
+/* ============================================================
+   CAMPUSNEST — PWA Test Page Styles
+   ============================================================ */
+
+.pwa-page {
+  min-height: 100vh;
+  background: #F2EDE7;
+  font-family: var(--font-body);
+}
+
+.pwa-main {
+  padding-top: 80px;
+}
+
+.pwa-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px var(--page-px) 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Header ── */
+.pwa-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pwa-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+}
+
+.pwa-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.pwa-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.65;
+  max-width: 500px;
+}
+
+.pwa-header-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy);
+  color: white;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* ── Grid ── */
+.pwa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Card ── */
+.pwa-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.pwa-card__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Status rows ── */
+.pwa-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pwa-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pwa-row:last-child { border-bottom: none; }
+
+.pwa-row__icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pwa-row__info { flex: 1; min-width: 0; }
+
+.pwa-row__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.pwa-row__detail {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  word-break: break-all;
+  line-height: 1.45;
+}
+
+.pwa-row__status {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.pwa-status--pass    { background: rgba(122,158,126,0.12); color: var(--sage);       }
+.pwa-status--warn    { background: rgba(212,168,83,0.12);  color: var(--gold-dark);  }
+.pwa-status--fail    { background: rgba(200,88,58,0.12);   color: var(--terracotta); }
+.pwa-status--loading { background: rgba(15,27,45,0.06);    color: var(--text-muted); }
+
+/* ── Action buttons ── */
+.pwa-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pwa-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--font-body);
+  text-align: left;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  width: 100%;
+}
+
+.pwa-action-btn:hover:not(:disabled) {
+  background: white;
+  border-color: var(--terracotta);
+  transform: translateX(3px);
+}
+
+.pwa-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pwa-action-btn > span:first-child {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.pwa-action-btn__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.pwa-action-btn__sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.pwa-action-btn__arrow {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.pwa-action-btn:hover:not(:disabled) .pwa-action-btn__arrow {
+  transform: translateX(3px);
+  color: var(--terracotta);
+}
+
+.pwa-action-btn--featured {
+  background: rgba(200,88,58,0.08);
+  border-color: rgba(200,88,58,0.25);
+}
+
+.pwa-action-btn--featured .pwa-action-btn__label {
+  color: var(--terracotta);
+}
+
+.pwa-action-btn--featured:hover:not(:disabled) {
+  background: rgba(200,88,58,0.14);
+}
+
+/* ── Log ── */
+.pwa-log-card {
+  background: var(--navy);
+  border-radius: var(--radius-xl);
+  padding: 22px 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.pwa-log-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.pwa-log-card .pwa-card__title {
+  color: white;
+  margin-bottom: 0;
+}
+
+.pwa-log-clear {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.40);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.pwa-log-clear:hover { color: rgba(255,255,255,0.75); }
+
+.pwa-log {
+  background: rgba(0,0,0,0.30);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  max-height: 220px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.pwa-log__empty {
+  color: rgba(255,255,255,0.25);
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.pwa-log__entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.pwa-log__icon { font-size: 13px; flex-shrink: 0; }
+
+.pwa-log__msg {
+  flex: 1;
+  font-weight: 500;
+}
+
+.pwa-log__ts {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+
+/* ── Browser info ── */
+.pwa-browser-card {}
+
+.pwa-browser-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.pwa-browser-item {}
+
+.pwa-browser-item__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.pwa-browser-item__value {
+  font-size: 0.82rem;
+  color: var(--navy);
+  font-weight: 400;
+  word-break: break-all;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .pwa-inner { padding: 32px var(--page-px-md) 60px; }
+  .pwa-grid  { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .pwa-inner          { padding: 24px var(--page-px-sm) 48px; }
+  .pwa-card           { padding: 18px; }
+  .pwa-browser-grid   { grid-template-columns: 1fr; }
+  .pwa-header         { flex-direction: column; }
+  .pwa-log            { max-height: 160px; }
+}

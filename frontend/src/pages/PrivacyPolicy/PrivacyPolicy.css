@@ -1,0 +1,28 @@
+/* ============================================================
+   CAMPUSNEST — Privacy Policy Styles
+   Imports base legal styles from TermsOfService.css and
+   adds the email link override.
+   ============================================================ */
+
+@import '../TermsOfService/TermsOfService.css';
+
+/* Privacy-specific overrides */
+.privacy-page .legal-hero__orb {
+  background: radial-gradient(
+    circle,
+    rgba(122, 158, 126, 0.20) 0%,
+    transparent 70%
+  );
+}
+
+.legal-email-link {
+  color: var(--terracotta);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-email-link:hover {
+  color: var(--terracotta-dark);
+  text-decoration: underline;
+}
