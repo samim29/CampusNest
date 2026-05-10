@@ -1,11 +1,10 @@
 /* ============================================================
-   CAMPUSNEST — AuthContext
-   Provides authentication state across the entire app.
-   - currentUser: object | null
-   - role: 'student' | 'owner' | 'admin' | null
-   - login / logout / updateUser helpers
-   - loading state for initial auth check
-   - Protected route helper: <RequireAuth>
+   CAMPUSNEST — AuthContext (Fixed)
+   
+   KEY FIX: useNavigate and useLocation are ONLY used inside
+   RequireAuth (which renders inside <Router> via routes).
+   They are NOT used inside AuthProvider at all.
+   AuthProvider itself has zero router dependencies.
    ============================================================ */
 
 import {
@@ -16,10 +15,14 @@ import {
   useCallback,
   useMemo,
 } from 'react';
+
+/* ── Router hooks imported ONLY for RequireAuth ──
+   These are used inside the component body of RequireAuth,
+   which always renders inside <Router>, so this is safe.    */
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 
-/* ── Shape of context value ── */
+/* ── Context ── */
 const AuthContext = createContext(null);
 
 /* ── Session storage key — never store passwords ── */
@@ -31,7 +34,6 @@ function loadSession() {
     const raw = sessionStorage.getItem(SESSION_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
-    /* Basic sanity check — must have id and role */
     if (!parsed?.id || !parsed?.role) return null;
     return parsed;
   } catch {
@@ -46,7 +48,7 @@ function saveSession(user) {
     if (!user) {
       sessionStorage.removeItem(SESSION_KEY);
     } else {
-      /* Strip any sensitive fields before storing */
+      /* Strip sensitive fields before storing */
       const { password, token, ...safe } = user;
       sessionStorage.setItem(SESSION_KEY, JSON.stringify(safe));
     }
@@ -56,26 +58,22 @@ function saveSession(user) {
 }
 
 /* ════════════════════════════════════════
-   PROVIDER
+   PROVIDER — zero router hooks here
    ════════════════════════════════════════ */
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [authLoading, setAuthLoading ] = useState(true);
 
-  /* ── Restore session on mount ── */
+  /* Restore session on mount */
   useEffect(() => {
     const stored = loadSession();
     setCurrentUser(stored);
     setAuthLoading(false);
   }, []);
 
-  /* ── Login ──
-     Call this after a successful API login response.
-     Pass the user object returned from your API.
-  ── */
   const login = useCallback((userData) => {
     if (!userData?.id || !userData?.role) {
-      if (process.env.NODE_ENV !== 'production') {
+      if (import.meta.env.DEV) {
         console.warn('[AuthContext] login() called with invalid user data');
       }
       return;
@@ -84,13 +82,11 @@ export function AuthProvider({ children }) {
     setCurrentUser(userData);
   }, []);
 
-  /* ── Logout ── */
   const logout = useCallback(() => {
     saveSession(null);
     setCurrentUser(null);
   }, []);
 
-  /* ── Update user fields (e.g. after profile edit) ── */
   const updateUser = useCallback((updates) => {
     setCurrentUser(prev => {
       if (!prev) return prev;
@@ -100,21 +96,17 @@ export function AuthProvider({ children }) {
     });
   }, []);
 
-  /* Derived helpers */
   const isAuthenticated = Boolean(currentUser);
   const role            = currentUser?.role ?? null;
-  const isStudent       = role === 'student';
-  const isOwner         = role === 'owner';
-  const isAdmin         = role === 'admin';
 
   const value = useMemo(() => ({
     currentUser,
     authLoading,
     isAuthenticated,
     role,
-    isStudent,
-    isOwner,
-    isAdmin,
+    isStudent: role === 'student',
+    isOwner:   role === 'owner',
+    isAdmin:   role === 'admin',
     login,
     logout,
     updateUser,
@@ -123,9 +115,6 @@ export function AuthProvider({ children }) {
     authLoading,
     isAuthenticated,
     role,
-    isStudent,
-    isOwner,
-    isAdmin,
     login,
     logout,
     updateUser,
@@ -144,32 +133,32 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) {
-    throw new Error('useAuth must be used inside <AuthProvider>');
+    throw new Error(
+      '[CampusNest] useAuth() must be called inside <AuthProvider>. ' +
+      'Make sure your component is rendered inside the provider tree.'
+    );
   }
   return ctx;
 }
 
 /* ════════════════════════════════════════
-   PROTECTED ROUTE WRAPPER
-   Usage:
-     <RequireAuth>
-       <Dashboard />
-     </RequireAuth>
-
-     <RequireAuth roles={['admin']}>
-       <Admin />
-     </RequireAuth>
+   REQUIRE AUTH
+   This component always renders INSIDE <Router> (via App.jsx
+   route definitions), so useNavigate / useLocation are safe.
    ════════════════════════════════════════ */
 export function RequireAuth({ children, roles }) {
   const { isAuthenticated, role, authLoading } = useAuth();
-  const navigate  = useNavigate();
-  const location  = useLocation();
+
+  /* These hooks are safe here — RequireAuth only ever
+     renders as a child of a <Route>, which is inside <Router> */
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
+    /* Wait for session check to finish */
     if (authLoading) return;
 
     if (!isAuthenticated) {
-      /* Redirect to login, preserving the intended destination */
       navigate(
         `${ROUTES.LOGIN}?next=${encodeURIComponent(location.pathname)}`,
         { replace: true }
@@ -179,19 +168,26 @@ export function RequireAuth({ children, roles }) {
 
     /* Role-based guard */
     if (roles && roles.length > 0 && !roles.includes(role)) {
-      /* Authenticated but wrong role — redirect to dashboard */
       navigate(ROUTES.DASHBOARD, { replace: true });
     }
-  }, [isAuthenticated, role, authLoading, navigate, location.pathname, roles]);
+  }, [
+    isAuthenticated,
+    role,
+    authLoading,
+    navigate,
+    location.pathname,
+    roles,
+  ]);
 
-  /* Show nothing while checking auth */
+  /* Still checking session — render nothing */
   if (authLoading) return null;
 
-  /* Not authenticated — return null while redirect fires */
+  /* Not logged in — redirect fires via useEffect above */
   if (!isAuthenticated) return null;
 
-  /* Role mismatch */
+  /* Wrong role — redirect fires via useEffect above */
   if (roles && roles.length > 0 && !roles.includes(role)) return null;
 
+  /* All checks passed — render the protected content */
   return children;
 }

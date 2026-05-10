@@ -1,7 +1,3 @@
-/* ============================================================
-   CAMPUSNEST — Vite Configuration
-   ============================================================ */
-
 import { defineConfig } from 'vite';
 import react            from '@vitejs/plugin-react';
 import path             from 'path';
@@ -11,18 +7,19 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      /* Allows: import X from '@/components/...' */
       '@': path.resolve(__dirname, './src'),
+      /* Force single React instance — fixes "Invalid hook call" */
+      'react':     path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
     },
   },
 
   server: {
     port: 3000,
     open: true,
-    /* Proxy API calls in development to avoid CORS */
     proxy: {
       '/api': {
-        target:      process.env.VITE_API_BASE_URL ?? 'http://localhost:8000',
+        target:       'http://localhost:8000',
         changeOrigin: true,
         secure:       false,
         rewrite:      (p) => p.replace(/^\/api/, ''),
@@ -31,9 +28,8 @@ export default defineConfig({
   },
 
   build: {
-    outDir:       'dist',
-    sourcemap:    false,
-    /* Split vendor chunks for better caching */
+    outDir:   'dist',
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -41,10 +37,8 @@ export default defineConfig({
         },
       },
     },
-    /* Warn if any chunk exceeds 600KB */
     chunkSizeWarningLimit: 600,
   },
 
-  /* Allow env variables prefixed VITE_ */
   envPrefix: 'VITE_',
 });

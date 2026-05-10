@@ -1,13 +1,3 @@
-/* ============================================================
-   CAMPUSNEST — App.jsx
-   Root routing configuration.
-   - All routes use React.lazy for code splitting
-   - Protected routes wrapped in <RequireAuth>
-   - Role-based guards for admin and owner routes
-   - Suspense fallback uses Loader component
-   - ErrorBoundary wraps every lazy page
-   ============================================================ */
-
 import { lazy, Suspense } from 'react';
 import {
   BrowserRouter as Router,
@@ -21,10 +11,9 @@ import { ThemeProvider }             from './context/ThemeContext';
 import ErrorBoundary                 from './components/ui/ErrorBoundary';
 import Loader                        from './components/ui/Loader';
 import { ROUTES }                    from './utils/constants';
-import { ToastProvider } from './hooks/useToast.jsx';                                                                                               
 import './styles/index.css';
 
-/* ── Lazy page imports — one chunk per page ── */
+/* ── Lazy imports ── */
 const LazyHome             = lazy(() => import('./pages/Home/Home'));
 const LazyLogin            = lazy(() => import('./pages/Login/Login'));
 const LazyForgotPassword   = lazy(() => import('./pages/ForgotPassword/ForgotPassword'));
@@ -44,7 +33,7 @@ const LazyPrivacyPolicy    = lazy(() => import('./pages/PrivacyPolicy/PrivacyPol
 const LazyHelpFAQ          = lazy(() => import('./pages/HelpFAQ/HelpFAQ'));
 const LazyPWATestPage      = lazy(() => import('./pages/PWATest/PWATestPage'));
 
-/* ── Global Suspense fallback ── */
+/* ── Helpers ── */
 function PageSuspense({ children }) {
   return (
     <Suspense fallback={<Loader loading />}>
@@ -53,7 +42,6 @@ function PageSuspense({ children }) {
   );
 }
 
-/* ── Wrap every page in ErrorBoundary + Suspense ── */
 function Page({ component: Component }) {
   return (
     <ErrorBoundary>
@@ -64,7 +52,6 @@ function Page({ component: Component }) {
   );
 }
 
-/* ── Protected page helper ── */
 function ProtectedPage({ component: Component, roles }) {
   return (
     <RequireAuth roles={roles}>
@@ -73,50 +60,42 @@ function ProtectedPage({ component: Component, roles }) {
   );
 }
 
-/* ── 404 inline component ── */
 function NotFound() {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '16px',
-        background: 'var(--cream)',
-        fontFamily: 'var(--font-body)',
-        textAlign: 'center',
-        padding: '40px 20px',
-      }}
-    >
+    <div style={{
+      minHeight:      '100vh',
+      display:        'flex',
+      flexDirection:  'column',
+      alignItems:     'center',
+      justifyContent: 'center',
+      gap:            '16px',
+      background:     'var(--cream)',
+      fontFamily:     'var(--font-body)',
+      textAlign:      'center',
+      padding:        '40px 20px',
+    }}>
       <span style={{ fontSize: '56px' }}>🏠</span>
-      <h1
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '2rem',
-          color: 'var(--navy)',
-          fontWeight: 700,
-        }}
-      >
+      <h1 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize:   '2rem',
+        color:      'var(--navy)',
+        fontWeight:  700,
+      }}>
         404 — Page Not Found
       </h1>
       <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
         This page doesn't exist or has been moved.
       </p>
-      <a
-        href={ROUTES.HOME}
-        style={{
-          marginTop: '8px',
-          padding: '12px 28px',
-          background: 'var(--terracotta)',
-          color: 'white',
-          borderRadius: '9999px',
-          fontWeight: 600,
-          fontSize: '0.9rem',
-          textDecoration: 'none',
-        }}
-      >
+      <a href={ROUTES.HOME} style={{
+        marginTop:     '8px',
+        padding:       '12px 28px',
+        background:    'var(--terracotta)',
+        color:         'white',
+        borderRadius:  '9999px',
+        fontWeight:    600,
+        fontSize:      '0.9rem',
+        textDecoration:'none',
+      }}>
         Back to Home
       </a>
     </div>
@@ -125,100 +104,57 @@ function NotFound() {
 
 /* ════════════════════════════════════════
    APP ROOT
+   
+   ORDER MATTERS:
+   1. <Router>        — outermost, enables useNavigate etc.
+   2. <ThemeProvider> — inside Router, no router deps
+   3. <AuthProvider>  — inside Router, no router deps
+   4. <Routes>        — renders pages
+   
+   RequireAuth uses useNavigate/useLocation safely because
+   it only renders inside a <Route> element.
    ════════════════════════════════════════ */
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <ToastProvider>
-        <Router>
+    <Router>
+      <ThemeProvider>
+        <AuthProvider>
           <Routes>
 
-            {/* ── Public routes ── */}
-            <Route
-              path={ROUTES.HOME}
-              element={<Page component={LazyHome} />}
-            />
-            <Route
-              path={ROUTES.LOGIN}
-              element={<Page component={LazyLogin} />}
-            />
-            <Route
-              path={ROUTES.FORGOT_PASSWORD}
-              element={<Page component={LazyForgotPassword} />}
-            />
+            {/* ── Public ── */}
+            <Route path={ROUTES.HOME}            element={<Page component={LazyHome} />} />
+            <Route path={ROUTES.LOGIN}           element={<Page component={LazyLogin} />} />
+            <Route path={ROUTES.FORGOT_PASSWORD} element={<Page component={LazyForgotPassword} />} />
 
-            {/* ── Public info routes ── */}
-            <Route
-              path={ROUTES.PG_LISTINGS}
-              element={<Page component={LazyPGListings} />}
-            />
-            <Route
-              path={ROUTES.PG_DETAIL}
-              element={<Page component={LazyPGDetail} />}
-            />
-            <Route
-              path={ROUTES.MESS_FOOD}
-              element={<Page component={LazyMessFood} />}
-            />
-            <Route
-              path={ROUTES.SAFETY}
-              element={<Page component={LazySafety} />}
-            />
-            <Route
-              path={ROUTES.DISCOVER}
-              element={<Page component={LazyCollegeDiscovery} />}
-            />
+            {/* ── Public info ── */}
+            <Route path={ROUTES.PG_LISTINGS}     element={<Page component={LazyPGListings} />} />
+            <Route path={ROUTES.PG_DETAIL}       element={<Page component={LazyPGDetail} />} />
+            <Route path={ROUTES.MESS_FOOD}       element={<Page component={LazyMessFood} />} />
+            <Route path={ROUTES.SAFETY}          element={<Page component={LazySafety} />} />
+            <Route path={ROUTES.DISCOVER}        element={<Page component={LazyCollegeDiscovery} />} />
             <Route
               path={ROUTES.COLLEGE_DISCOVERY}
-              element={
-                <Navigate to={ROUTES.DISCOVER} replace />
-              }
+              element={<Navigate to={ROUTES.DISCOVER} replace />}
             />
-            <Route
-              path={ROUTES.COLLEGE}
-              element={<Page component={LazyCollege} />}
-            />
-            <Route
-              path={ROUTES.COLLEGE_BY_ID}
-              element={<Page component={LazyCollege} />}
-            />
-            <Route
-              path={ROUTES.SUBJECT_HUB}
-              element={<Page component={LazySubjectHub} />}
-            />
-            <Route
-              path={ROUTES.TERMS}
-              element={<Page component={LazyTermsOfService} />}
-            />
-            <Route
-              path={ROUTES.PRIVACY}
-              element={<Page component={LazyPrivacyPolicy} />}
-            />
-            <Route
-              path={ROUTES.HELP}
-              element={<Page component={LazyHelpFAQ} />}
-            />
-            <Route
-              path={ROUTES.PWA_TEST}
-              element={<Page component={LazyPWATestPage} />}
-            />
+            <Route path={ROUTES.COLLEGE}         element={<Page component={LazyCollege} />} />
+            <Route path={ROUTES.COLLEGE_BY_ID}   element={<Page component={LazyCollege} />} />
+            <Route path={ROUTES.SUBJECT_HUB}     element={<Page component={LazySubjectHub} />} />
+            <Route path={ROUTES.TERMS}           element={<Page component={LazyTermsOfService} />} />
+            <Route path={ROUTES.PRIVACY}         element={<Page component={LazyPrivacyPolicy} />} />
+            <Route path={ROUTES.HELP}            element={<Page component={LazyHelpFAQ} />} />
+            <Route path={ROUTES.PWA_TEST}        element={<Page component={LazyPWATestPage} />} />
 
-            {/* ── Authenticated routes ── */}
+            {/* ── Auth required ── */}
             <Route
               path={ROUTES.DASHBOARD}
-              element={
-                <ProtectedPage component={LazyDashboard} />
-              }
+              element={<ProtectedPage component={LazyDashboard} />}
             />
             <Route
               path={ROUTES.PROFILE}
-              element={
-                <ProtectedPage component={LazyProfile} />
-              }
+              element={<ProtectedPage component={LazyProfile} />}
             />
 
-            {/* ── Owner-only routes ── */}
+            {/* ── Owner only ── */}
             <Route
               path={ROUTES.OWNER_DASHBOARD}
               element={
@@ -229,7 +165,7 @@ function App() {
               }
             />
 
-            {/* ── Admin-only routes ── */}
+            {/* ── Admin only ── */}
             <Route
               path={ROUTES.ADMIN}
               element={
@@ -244,10 +180,9 @@ function App() {
             <Route path="*" element={<NotFound />} />
 
           </Routes>
-        </Router>
-        </ToastProvider>
-      </AuthProvider>
-    </ThemeProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
